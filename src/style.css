@@ -10,8 +10,10 @@
   color-scheme: light dark;
   background-color: #ffff;
   width: 800px;
+  height: 100%;
   align-items: center;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,4 +22,21 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  height: 100%;
+}
 
+#app {
+  height: 100%;
+}
+
+.main-gradient {
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
+
+button {
+  border-radius: 4px;
+  background: rgb(131,58,180);
+  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+}
