@@ -1,0 +1,80 @@
+{
+    "initButtonText": "Click here to start",
+    "chooseLanguageTitle": "Choose your language:",
+    "ruLang": "Russian",
+    "engLang": "English",
+    "helloText": "Hello! I'm a smart bot and here to help you!",
+    "questionText": [
+        "What can I do for you?",
+        "What do you want from me?",
+        "How can I assist?",
+        "How can I help?"
+    ],
+    "userInteractions": [
+        "Show weather",
+        "Order pizza",
+        "Set alarm"
+    ],
+    "botAnswers": [
+        {
+            "type": "weather",
+            "text": "Do you want a weather in your city or another?"
+        },
+        {
+            "type": "pizza",
+            "text": "Which pizza do you want?"
+        },
+        {
+            "type": "alarn",
+            "text": "For which time do you want to set an alarm?"
+        }
+    ],
+    "pizzaVariants": [
+        "Margherita",
+        "Pepperoni",
+        "Other"
+    ],
+    "weatherVariants": [
+        "My location",
+        "Other city"
+    ],
+    "alarmVariants": [
+        "07:00",
+        "08:00",
+        "09:00",
+        "Other"
+    ],
+    "botOtherReaction": [
+        {
+            "type": "pizza",
+            "reaction": "Okay, what pizza do you want?"
+        },
+        {
+            "type": "alarm",
+            "reaction": "Okay, which time do you want to set an alarm?"
+        },
+        {
+            "type": "weather",
+            "reaction": "Okay, which location do you want?"
+        }
+    ],
+    "botSuccessReaction": [
+        {
+            "type": "pizza",
+            "reaction": "I ordered you a pizza! Anything else?"
+        },
+        {
+            "type": "alarm",
+            "reaction": "I set an alarm for you! Anything else?"
+        },
+        {
+            "type": "weather",
+            "reaction": "Okay, here's your weather:"
+        }
+    ],
+    "botOtherHelpAnswers": [
+        "Anything else?",
+        "Can you do something for you again?",
+        "Do you need my help again?"
+    ]
+}
