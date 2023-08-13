@@ -7,13 +7,24 @@ export default {
         squish: {
           '0%, 100%': { transform: 'scaleY(1)' },
           '50%': { transform: 'scaleY(.85)' },
+        },
+        gradientAnimation: {
+          '0%': {
+            'background-position': '0% 0%'
+          },
+          '50%': {
+            'background-position': '0% 50%'
+          },
+          '100%': {
+            'background-position': '100% 50%'
+          }
         }
-      },
-      animation: {
-        squish: 'squish 2s ease-in-out infinite',
-        
       }
     },
+    animation: {
+      squish: 'squish 2s ease-in-out infinite',
+      gradient: 'gradientAnimation 15s ease infinite'
+    }
   },
   plugins: [],
 }
