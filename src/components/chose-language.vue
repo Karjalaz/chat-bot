@@ -1,6 +1,4 @@
 <script setup>
-import engLines from './../assets/json/eng-lines.json';
-import ruLines from './../assets/json/ru-lines.json';
 import { getBotData } from './../composable/bot-state.js';
 import { ref, computed } from 'vue';
 
@@ -8,43 +6,54 @@ const {
     chosenLanguage,
     setLangEng,
     setLangRus,
-    defineLanguage
+    defineLanguage,
+    getText
 } = getBotData();
-
-const text = computed(() => (chosenLanguage() == 'eng') ? engLines : ruLines);
-
-function setLanguage(func) {
-    func();
-    defineLanguage();
-}
+const text = getText();
+const engHover = ref(false);
+const ruHover = ref(false);
 </script>
 
 <template>
-    <div class="chose-language flex flex-col h-full w-full justify-center align-center items-center">
+    <div class="chose-language flex flex-col h-full w-full justify-center items-center">
         <h1 class="chose-language__header font-semibold text-lg">
             {{ text.chooseLanguageTitle }}
         </h1>
-        <div class="chose-language__options mt-8">
+        <div class="chose-language__options mt-6">
             <ul 
                 class="chose-language__options-list 
                 flex flex-row gap-6">
                 <li>
                     <button 
-                        class="chose-language__eng px-6 py-2"
-                        :class="{'active': chosenLanguage() == 'eng', 'inactive': chosenLanguage() != 'eng'}"
-                        @click="setLanguage(setLangEng)">
+                        class="chose-language__eng gradient-animate px-6 py-2"
+                        :class="{
+                            'active': chosenLanguage() == 'eng' && !ruHover, 
+                            'inactive': chosenLanguage() != 'eng' || ruHover}"
+                        @click="setLangEng()"
+                        @mouseover="engHover = true"
+                        @mouseleave="engHover = false">
                         {{ text.engLang }}
                     </button>
                 </li>
                 <li>
                     <button 
-                        class="chose-language__ru px-6 py-2"
-                        :class="{'active': chosenLanguage() == 'rus', 'inactive': chosenLanguage() != 'rus'}"
-                        @click="setLanguage(setLangRus)">
+                        class="chose-language__ru gradient-animate px-6 py-2"
+                        :class="{
+                            'active': chosenLanguage() == 'rus' && !engHover, 
+                            'inactive': chosenLanguage() != 'rus' || engHover}"
+                        @click="setLangRus()"
+                        @mouseover="ruHover = true"
+                        @mouseleave="ruHover = false">
                         {{ text.ruLang }}
                     </button>
                 </li>
             </ul>
         </div>
+        <button 
+            class="chose-language__confirm active mt-6 mb-6 
+            px-6 py-2 hover:animate-squish"
+            @click="defineLanguage()">
+            {{ text.confirm }}
+        </button>
     </div>
 </template>

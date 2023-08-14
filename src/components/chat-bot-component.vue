@@ -1,9 +1,6 @@
 <script setup>
-import { computed } from 'vue';
 import chatBotPage from './../pages/chat-bot-page.vue';
 import theHeader from './the-header.vue';
-import engLines from './../assets/json/eng-lines.json';
-import ruLines from './../assets/json/ru-lines.json';
 import choseLanguage from './chose-language.vue';
 import { getBotData } from './../composable/bot-state.js';
 
@@ -11,17 +8,17 @@ const {
     isBotInit,
     initBot,
     isLangDefined,
-    chosenLanguage
+    getText
 } = getBotData();
 
-const text = computed(() => (chosenLanguage() == 'eng') ? engLines : ruLines);
+const text = getText();
 </script>
 
 <template>
     <chose-language v-if="!isLangDefined()"/>
     <div v-else class="container h-full flex flex-col">
         <the-header class="header"/>
-        <div v-if="isBotInit()" class="page">
+        <div v-if="isBotInit()" class="page h-full">
             <chat-bot-page/>
         </div>
         <div v-else class="button-area flex flex-col justify-center h-full">
@@ -31,7 +28,7 @@ const text = computed(() => (chosenLanguage() == 'eng') ? engLines : ruLines);
             </h2>
             <button 
                 class="button-area__button text-white font-bold mb-6
-                w-full px-6 py-4 hover:animate-squish delay-800 active"
+                w-full px-6 py-4 hover:animate-squish delay-800 active mx-2"
                 @click="initBot()">
                 {{ text.initButtonText }}
             </button>

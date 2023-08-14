@@ -2,6 +2,8 @@
     "botName": "Text bot",
     "initText": "Nothing here... Click button to start",
     "initButtonText": "Click here to start",
+    "confirm": "Continue...",
+    "inputPlaceholder": "Type here...",
     "chooseLanguageTitle": "Choose your language:",
     "ruLang": "Russian",
     "engLang": "English",
