@@ -1,5 +1,5 @@
 <script setup>
-import { getBotData } from './../composable/bot-state.js';
+import { getLanguageInfo } from './../composable/language-state.js';
 import { ref, computed } from 'vue';
 
 const { 
@@ -8,7 +8,7 @@ const {
     setLangRus,
     defineLanguage,
     getText
-} = getBotData();
+} = getLanguageInfo();
 const text = getText();
 const engHover = ref(false);
 const ruHover = ref(false);

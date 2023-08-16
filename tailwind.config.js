@@ -11,6 +11,9 @@ export default {
       },
       animation: {
         squish: 'squish 2s ease-in-out infinite'
+      },
+      colors: {
+        primary: 'rgb(131,58,180)'
       }
     },
   },

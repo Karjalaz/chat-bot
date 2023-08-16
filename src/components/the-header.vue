@@ -4,7 +4,7 @@ import { getBotData } from './../composable/bot-state.js';
 
 const { 
     isBotInit,
-    killBot
+    setChatVisible,
 } = getBotData();
 </script>
 
@@ -21,7 +21,7 @@ const {
         <p 
             class="header__close font-bold text-xl m-0 p-4 cursor-pointer"
             :class="{'invisible': !isBotInit()}"
-            @click="killBot()">
+            @click="setChatVisible(false)">
             x
         </p>
     </div>

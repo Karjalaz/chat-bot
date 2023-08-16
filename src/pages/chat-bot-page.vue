@@ -1,14 +1,17 @@
 <script setup>
-import { getBotData } from './../composable/bot-state';
+import { getLanguageInfo } from './../composable/language-state';
+import { getMessageData } from './../composable/message-history';
 import botMessage from '../components/items/bot-message.vue';
 
 const {
-    getText,
-    getMessageHistory
-} = getBotData();
+    getText
+} = getLanguageInfo();
+const {
+    getMessages
+} = getMessageData();
 
 const text = getText();
-const messages = getMessageHistory();
+const messages = getMessages();
 </script>
 
 <template>
@@ -16,7 +19,7 @@ const messages = getMessageHistory();
         <div class="chat-bot__messages p-2">
             <ul>
                 <li v-for="message in messages" :key="message.id">
-                    <bot-message v-if="message.from=='bot'" :message="message.text"/>
+                    <bot-message v-if="message.from=='bot'" :message="message"/>
                 </li>
             </ul>
         </div>

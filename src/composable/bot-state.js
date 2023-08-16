@@ -1,67 +1,51 @@
 import { ref, computed, reactive } from 'vue';
-import engLines from './../assets/json/eng-lines.json';
-import ruLines from './../assets/json/ru-lines.json';
+import { getMessageData } from './message-history';
+import { getLanguageInfo } from './language-state';
 
-const botInit = ref(false);
+const {
+    addBotMessage,
+    addUserMessage,
+    addUserOptions,
+    getMessages 
+} = getMessageData();
 
-const language = ref('eng');
+const {
+    getText
+} = getLanguageInfo();
 
-const languageChosen = ref(false);
+const botInit = computed(() => messageHistory.items.length > 0);
 
-const text = computed(() => (language.value == 'eng') ? engLines : ruLines);
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
 
-const messageHistory = reactive ({
-    items: []
+const text = getText();
+
+const messageHistory = reactive({
+    items: getMessages()
 });
+
+const chatVisible = ref(false);
 
 export const getBotData = () => {
     const initBot = () => {
-        botInit.value = true
-        messageHistory.items.push({
-            id: 0,
-            from: 'bot',
-            text: text.value.helloText
-        });
+        if (!botInit.value) {        
+            addBotMessage(text.helloText, 0, true);
+            addBotMessage(text.questionText[getRandomInt(3)], 1000, false);
+            addUserOptions(text.userInteractions);
+        }
     };
 
     const isBotInit = () => botInit.value;
 
-    const killBot = () => botInit.value = false;
+    const isChatVisible = () => chatVisible.value;
 
-    const setLangRus = () => { 
-        language.value = 'rus';
-     };
-
-    const setLangEng = () => {
-        language.value = 'eng';
-    }
-
-    const isLangDefined = () => languageChosen.value;
-
-    const chosenLanguage = () => language.value;
-
-    const defineLanguage = () => languageChosen.value = true;
-
-    const getText = () => text.value;
-
-    const setMessageHistory = (history) => messageHistory.items = history;
-
-    const getMessageHistory = () => messageHistory.items
-
-    const addMessage = (message) => messageHistory.items.push(message)
+    const setChatVisible = (value) => chatVisible.value = value;
 
     return {
         initBot,
         isBotInit,
-        killBot,
-        setLangEng,
-        setLangRus,
-        isLangDefined,
-        chosenLanguage,
-        defineLanguage,
-        getText,
-        setMessageHistory,
-        getMessageHistory,
-        addMessage
+        setChatVisible,
+        isChatVisible
     }
 }

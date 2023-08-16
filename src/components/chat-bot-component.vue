@@ -3,22 +3,33 @@ import chatBotPage from './../pages/chat-bot-page.vue';
 import theHeader from './the-header.vue';
 import choseLanguage from './chose-language.vue';
 import { getBotData } from './../composable/bot-state.js';
+import { getLanguageInfo } from './../composable/language-state.js';
 
 const { 
     isBotInit,
     initBot,
-    isLangDefined,
-    getText
+    setChatVisible,
+    isChatVisible
 } = getBotData();
 
+const {
+    isLangDefined,
+    getText
+} = getLanguageInfo();
+
 const text = getText();
+
+function openChat() {
+    initBot();
+    setChatVisible(true);
+}
 </script>
 
 <template>
     <chose-language v-if="!isLangDefined()"/>
     <div v-else class="container h-full flex flex-col">
         <the-header class="header"/>
-        <div v-if="isBotInit()" class="page h-full">
+        <div v-if="isChatVisible()" class="page h-full">
             <chat-bot-page/>
         </div>
         <div v-else class="button-area flex flex-col justify-center h-full">
@@ -29,7 +40,7 @@ const text = getText();
             <button 
                 class="button-area__button text-white font-bold mb-6
                 w-full px-6 py-4 hover:animate-squish delay-800 active mx-2"
-                @click="initBot()">
+                @click="openChat()">
                 {{ text.initButtonText }}
             </button>
         </div>

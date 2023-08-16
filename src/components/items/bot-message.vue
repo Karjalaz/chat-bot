@@ -1,32 +1,48 @@
 <script setup>
 import { defineProps, ref, onMounted } from 'vue';
+import { getLanguageInfo } from './../../composable/language-state.js';
 
 const props = defineProps({
-    message: String
+    message: Object
 });
 
-const animationAppeared = ref(false);
-const text = ref('...');
+const {
+    getText
+} = getLanguageInfo();
+
+const messageVisible = ref(false);
 
 onMounted(() => {
-    animationAppeared.value = true;
+    console.log(props.message);
     setTimeout(() => {
-        text.value = props.message;
-    }, 1500);
-});
+        messageVisible.value = true;
+    }, props.message.timeout);
+})
 </script>
 
 <template>
-    <div
-        class="bot-message flex flex-row items-center justify-between mt-2">
-        <div class="bot-message__text p-4">
-            <p 
-                class="bot-message__messages"
-                :class="{'animate-bounce': !animationAppeared}">
-                {{ text }}
-            </p>
+    <Transition name="show" mode="out-in">
+        <div v-if="messageVisible"
+            class="bot-message flex flex-row items-center mt-2">
+            <img 
+                class="bot-message__avatar p-2"
+                :class="{'invisible': !props.message.withIcon}"
+                src="./../../assets/img/icon-robot.svg"
+                alt="robot avatar">
+            <div
+                class="bot-message__text p-4 flex flex-col ml-2"
+                key="text">
+                <h1 v-if="props.message.withIcon"
+                    class="bot-message__bot-name text-primary">
+                    {{  getText().botName }}
+                </h1>
+                <p 
+                    class="bot-message__messages">
+                    {{ props.message.text }}
+                </p>
+            </div>
         </div>
-    </div>
+    </Transition>
 </template>
 
 <style scoped>
@@ -35,44 +51,38 @@ onMounted(() => {
     border-radius: 6px;
 }
 
+.bot-message__avatar {
+    border: solid 2px rgb(131,58,180); 
+    border-radius: 26px;
+    background-color: rgba(131,58,180,.2);
+    width: 64px;
+    height: 64px;
+}
+
 .bot-message {
     max-width: 60%;
 }
 
 .show-enter-active {
-    transition: max-width 1s ease;
+    transition: opacity 1s ease-in-out;
 }
 
 .show-leave-active {
-    transition: max-width 1s ease;
+    transition: opacity 1s ease;
 }
 
 .show-enter-from {
-    max-width: 0;
+    opacity: 0;
 }
 .show-leave-to {
-    max-width: 0;
+    opacity: 0;
 }
 
 .show-enter-to {
-    max-width: 60%;
+    opacity: 1;
 } 
 
 .show-leave-from {
-    max-width: 60%;
-}
-
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
+    opacity: 1;
 }
 </style>
