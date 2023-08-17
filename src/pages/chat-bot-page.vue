@@ -24,7 +24,7 @@ const messages = getMessages();
 
 const optionalAnswer = ref(null);
 
-function sendMessage() {
+function sendMessage(e) {
     let type = messages[messages.length - 1].type;
     botReaction(optionalAnswer.value, type);
     optionalAnswer.value = '';
@@ -62,7 +62,7 @@ function sendMessage() {
                     v-model="optionalAnswer">
                 <button 
                     class="text-lg w-1/6 h-full hover:animate-squish"
-                    @click="sendMessage()">
+                    @click.self="sendMessage()">
                     >
                 </button>
             </div>

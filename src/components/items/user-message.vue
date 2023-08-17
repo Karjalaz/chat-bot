@@ -13,7 +13,6 @@ const {
 const messageVisible = ref(false);
 
 onMounted(() => {
-    console.log(props.message);
     setTimeout(() => {
         messageVisible.value = true;
     }, props.message.timeout);

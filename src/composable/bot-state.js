@@ -48,7 +48,6 @@ function sentBotInitMessages(message) {
 }
 
 async function getWeatherInfoByLocal(local) {
-    console.log(local);
     let weather = await apiClient.value.getCurrentWeatherByCityName(local);
     console.log(weather);
     if (weather.success) {
@@ -141,31 +140,33 @@ export const getBotData = () => {
         if (_text == text.otherTextVariant) {
             otherOption.value = true;
 
-            if (_type == 'weather') 
-                getWeatherInfoByLocal(_text);
             return;
         }
 
         if (_type == 'weather') {
             addUserMessage(_text, _type, 0);
             getLocation();
+
+            otherOption.value = false;
             return;
         }
-
-        otherOption.value = false;
 
         botReaction(_text, _type);
     }
 
     const botReaction = (_text, _type) => {
         addUserMessage(_text, _type, 0);
-        addBotMessage(
-            text.botSuccessReaction.find(it => 
-                it.type == _type
-            ).reaction, 
-            1000
-        );
-        addUserOptions(text.userInteractions, null, 1100);
+        if (_type == 'weather') {
+            getWeatherInfoByLocal(_text);
+        } else {
+            addBotMessage(
+                text.botSuccessReaction.find(it => 
+                    it.type == _type
+                ).reaction, 
+                1000
+            );
+            addUserOptions(text.userInteractions, null, 1100);
+        }
         otherOption.value = false;
     } 
 
