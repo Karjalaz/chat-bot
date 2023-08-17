@@ -1,5 +1,5 @@
 <script setup>
-import lines from '@/assets/json/eng-lines.json';
+import { getLanguageInfo } from '@/composable/language-state';
 import { getBotData } from '@/composable/bot-state.js';
 import { getMessageData } from '@/composable/message-history';
 
@@ -12,6 +12,10 @@ const {
 const {
     clearMessages
 } = getMessageData();
+
+const {
+    getText
+} = getLanguageInfo();
 </script>
 
 <template>
@@ -24,11 +28,11 @@ const {
             alt="Robot icon">
         <div class="header__text flex flex-col text-center">
             <h1 class="header__title font-bold cursor-default">
-                {{  lines.botName }}
+                {{  getText().botName }}
             </h1> 
             <p v-if="isBotTyping()"
                 class="header__type-text animate-bounce">
-                {{ lines.botTypingText }}
+                {{ getText().botTypingText }}
             </p>
         </div>
         <h1 

@@ -11,7 +11,9 @@ const text = computed(() => (language.value == 'eng') ? engLines : ruLines);
 export const getLanguageInfo = () => {
 
     const setLangRus = () => { 
+        console.log("rus");
         language.value = 'rus';
+        console.log(text.value.botName);
      };
 
     const setLangEng = () => {

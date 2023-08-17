@@ -1,5 +1,5 @@
 {
-    "botName": "Text bot",
+    "botName": "Helper bot",
     "initText": "Nothing here... Click button to start",
     "initButtonText": "Click here to start",
     "confirm": "Continue...",
@@ -8,7 +8,7 @@
     "userName": "You",
     "ruLang": "Russian",
     "engLang": "English",
-    "helloText": "Hello! I'm a smart bot and here to help you!",
+    "helloText": "Hello! I'm a smart bot and I'm here to help you!",
     "questionText": [
         "What can I do for you?",
         "How can I assist?",
@@ -85,7 +85,7 @@
             "type": "weather",
             "reaction": {
                 "beforeCity": "Okay, here's your weather in",
-                "afterCity": "Temperature is",
+                "afterCity": "temperature is",
                 "afterTemperature": "feels like"
             }
         }

@@ -37,7 +37,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-const text = getText();
+const text = computed(() => getText());
 
 const otherOption = ref(false);
 
@@ -60,8 +60,8 @@ function sendBotInitMessages(message) {
     endBotAnswer(1800);
 
     addBotMessage(message, 0, true);
-    addBotMessage(text.questionText[getRandomInt(3)], 1000, false);
-    addUserOptions(text.userInteractions, null, 1100);
+    addBotMessage(text.value.questionText[getRandomInt(3)], 1000, false);
+    addUserOptions(text.value.userInteractions, null, 1100);
 
 }
 
@@ -71,7 +71,7 @@ async function getWeatherInfoByLocal(local) {
         console.log(weather);
         sendWeatherInfo(weather);
     } else {
-        sendBotInitMessages(text.botCityNotFoundError);
+        sendBotInitMessages(text.value.botCityNotFoundError);
     }
 }
 
@@ -114,7 +114,7 @@ function sendWeatherInfo(weather) {
             + description.slice(1);
     
     
-    let template = text.botSuccessReaction.find(it => it.type == 'weather');
+    let template = text.value.botSuccessReaction.find(it => it.type == 'weather');
     template = template.reaction;
 
     sendBotInitMessages(
@@ -132,14 +132,14 @@ watch(locationReceived, async (newValue) => {
             sendWeatherInfo(weather);
         }
     } else {
-        sendBotInitMessages(text.botGeolocationError);
+        sendBotInitMessages(text.value.botGeolocationError);
     }
 });
 
 export const getBotData = () => {
     const initBot = () => {
         if (!botInit.value) {  
-            sendBotInitMessages(text.helloText);
+            sendBotInitMessages(text.value.helloText);
         }
     };
 
@@ -149,14 +149,14 @@ export const getBotData = () => {
         addUserMessage(_text, _type, 800);
         startBotAnswer(800);
 
-        addBotMessage(text.botAnswers.find(it => it.type == _type).text, 1000);
-        addUserOptions(text[_type+'Variants'], _type, 1500);
+        addBotMessage(text.value.botAnswers.find(it => it.type == _type).text, 1000);
+        addUserOptions(text.value[_type+'Variants'], _type, 1500);
 
         endBotAnswer(1500);
     }
 
     const choseOption = (_text, _type) => {
-        if (_text == text.otherTextVariant) {
+        if (_text == text.value.otherTextVariant) {
             otherOption.value = true;
 
             return;
@@ -181,12 +181,12 @@ export const getBotData = () => {
             startBotAnswer();
 
             addBotMessage(
-                text.botSuccessReaction.find(it => 
+                text.value.botSuccessReaction.find(it => 
                     it.type == _type
                 ).reaction, 
                 1000
             );
-            addUserOptions(text.userInteractions, null, 1100);
+            addUserOptions(text.value.userInteractions, null, 1100);
 
             endBotAnswer(1100);
         }

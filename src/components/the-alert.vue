@@ -1,7 +1,7 @@
 <script setup>
 import { getLanguageInfo } from '@/composable/language-state';
 import { getBotData } from '@/composable/bot-state';
-import { defineProps, ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { getMessageData } from '@/composable/message-history.js';
 
 const { getText } = getLanguageInfo();
@@ -15,6 +15,10 @@ function close() {
     closeAlert();
     clearMessages();
 }
+
+onMounted(() => {
+    console.log(getText().botName);
+})
 </script>
 
 <template>
@@ -22,7 +26,7 @@ function close() {
         <div v-if="alertVisibility()"
             class="alert w-full h-full flex justify-center items-center">
             <div class="alert__window mx-4 flex flex-col bg-white p-3 rounded
-                md:p-6 md:w-1/5">
+                md:p-6 xl:w-1/5">
                 <h1 class="alert__header font-bold text-center">
                     {{ getText().alertTitle }}
                 </h1>

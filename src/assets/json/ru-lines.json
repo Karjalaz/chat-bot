@@ -1,100 +1,103 @@
 {
-    "botName": "Text bot",
-    "initText": "Nothing here... Click button to start",
-    "initButtonText": "Click here to start",
-    "confirm": "Continue...",
-    "inputPlaceholder": "Type here...",
-    "chooseLanguageTitle": "Choose your language:",
-    "userName": "You",
-    "ruLang": "Russian",
-    "engLang": "English",
-    "helloText": "Hello! I'm a smart bot and here to help you!",
+    "botName": "Бот помощник",
+    "initText": "Здесь ничего пока нет... Нажмите кнопку чтобы начать",
+    "initButtonText": "Нажмите, чтобы начать",
+    "confirm": "Продолжить...",
+    "inputPlaceholder": "Пишите здесь...",
+    "chooseLanguageTitle": "Выберите язык:",
+    "userName": "Вы",
+    "ruLang": "Русский",
+    "engLang": "Английский",
+    "helloText": "Здравствуйте! Я - бот помощник, и хочу помочь Вам!",
     "questionText": [
-        "What can I do for you?",
-        "How can I assist?",
-        "How can I help?"
+        "Что я могу сделать для Вас?",
+        "Чем могу быть полезен?",
+        "Как я могу помочь?"
     ],
     "userInteractions": [
         {
             "type": "weather",
-            "text": "Show weather"
+            "text": "Покажи погоду"
         },
         {
             "type": "pizza",
-            "text": "Order pizza"
+            "text": "Закажи пиццу"
         },
         {
             "type": "alarm",
-            "text": "Set alarm"
+            "text": "Установи будильник"
         }
     ],
     "botAnswers": [
         {
             "type": "weather",
-            "text": "Do you want a weather in your city or another?"
+            "text": "Вы хотите узнать погоду в своем городе или в каком-то другом?"
         },
         {
             "type": "pizza",
-            "text": "Which pizza do you want?"
+            "text": "Какую пиццу Вы хотите?"
         },
         {
             "type": "alarm",
-            "text": "For which time do you want to set an alarm?"
+            "text": "На какое время Вы хотите установить будильник?"
         }
     ],
-    "otherTextVariant": "Other",
+    "otherTextVariant": "Другое",
     "pizzaVariants": [
-        "Margherita",
-        "Pepperoni",
-        "Other"
+        "Маргарита",
+        "Пеперони",
+        "Другое"
     ],
     "weatherVariants": [
-        "My location",
-        "Other"
+        "Моя локация",
+        "Другое"
     ],
     "alarmVariants": [
         "07:00",
         "08:00",
         "09:00",
-        "Other"
+        "Другое"
     ],
     "botOtherReaction": [
         {
             "type": "pizza",
-            "reaction": "Okay, what pizza do you want?"
+            "reaction": "Хорошо, какую пиццу Вы хотите?"
         },
         {
             "type": "alarm",
-            "reaction": "Okay, which time do you want to set an alarm?"
+            "reaction": "Хорошо, на какое время поставить будильник?"
         },
         {
             "type": "weather",
-            "reaction": "Okay, which location do you want?"
+            "reaction": "Хорошо, погоду для какой локации Вы хотите?"
         }
     ],
     "botSuccessReaction": [
         {
             "type": "pizza",
-            "reaction": "I ordered you a pizza! Anything else?"
+            "reaction": "Я заказал Вам пиццу! Что-нибудь еще?"
         },
         {
             "type": "alarm",
-            "reaction": "I set an alarm for you! Anything else?"
+            "reaction": "Я установил для Вас будильник! Что-нибудь еще?"
         },
         {
             "type": "weather",
             "reaction": {
-                "beforeCity": "Okay, here's your weather in",
-                "afterCity": "Temperature is",
-                "afterTemperature": "feels like"
+                "beforeCity": "Хорошо, вот погода в городе",
+                "afterCity": "температура:",
+                "afterTemperature": "ощущается как"
             }
         }
     ],
     "botOtherHelpAnswers": [
-        "Anything else?",
-        "Can you do something for you again?",
-        "Do you need my help again?"
+        "Что-нибудь еще?",
+        "Могу я Вам чем-нибудь снова помочь?",
+        "Нужна ли Вам еще раз моя помощь?"
     ],
-    "botGeolocationError": "Sorry, error occured! You need to grant permission to your geolocation.",
-    "botCityNotFoundError": "Sorry, error occured! City that you stated is not found in our databases."
+    "botGeolocationError": "Простите, возникла ошибка! Вам необходимо предоставить разрешения к своей геолокации.",
+    "botCityNotFoundError": "Простите, возникла ошибка! Указанный город не найден в базах. Проверьте правильность написания.",
+    "alertTitle": "Подтвердите действие",
+    "youSureToExitText": "Вы уверены что хотите выйти? История сообщений не сохранится.",
+    "botTypingText": "печатает..."
 }

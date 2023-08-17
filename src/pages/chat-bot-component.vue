@@ -17,8 +17,6 @@ const {
     getText
 } = getLanguageInfo();
 
-const text = getText();
-
 function openChat() {
     initBot();
 }
@@ -41,14 +39,14 @@ function openChat() {
                     sm:px-4">
                 <h1 class="text-black text-center font-semibold
                     mt-auto mb-auto hover:animate-bounce delay-300 cursor-default">
-                    {{ text.initText }}
+                    {{ getText().initText }}
                 </h1>
                 <button 
                     class="button-area__button text-white font-bold
                     w-full px-6 py-4 hover:animate-squish delay-800 active
                     sm:mb-6 xl:text-xl"
                     @click="openChat()">
-                    {{ text.initButtonText }}
+                    {{ getText().initButtonText }}
                 </button>
             </div>
         </Transition>

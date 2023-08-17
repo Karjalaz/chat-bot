@@ -9,7 +9,6 @@ const {
     defineLanguage,
     getText
 } = getLanguageInfo();
-const text = getText();
 const engHover = ref(false);
 const ruHover = ref(false);
 </script>
@@ -17,7 +16,7 @@ const ruHover = ref(false);
 <template>
     <div class="chose-language flex flex-col h-full w-full justify-center items-center">
         <h1 class="chose-language__header font-semibold">
-            {{ text.chooseLanguageTitle }}
+            {{ getText().chooseLanguageTitle }}
         </h1>
         <div class="chose-language__options mt-6">
             <ul 
@@ -32,7 +31,7 @@ const ruHover = ref(false);
                         @click="setLangEng()"
                         @mouseover="engHover = true"
                         @mouseleave="engHover = false">
-                        {{ text.engLang }}
+                        {{ getText().engLang }}
                     </button>
                 </li>
                 <li>
@@ -44,7 +43,7 @@ const ruHover = ref(false);
                         @click="setLangRus()"
                         @mouseover="ruHover = true"
                         @mouseleave="ruHover = false">
-                        {{ text.ruLang }}
+                        {{ getText().ruLang }}
                     </button>
                 </li>
             </ul>
@@ -53,7 +52,7 @@ const ruHover = ref(false);
             class="chose-language__confirm active mt-6 mb-6 
             px-6 py-2 hover:animate-squish lg:text-xl"
             @click="defineLanguage()">
-            {{ text.confirm }}
+            {{ getText().confirm }}
         </button>
     </div>
 </template>
