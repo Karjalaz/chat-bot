@@ -19,6 +19,20 @@ const botInit = computed(() => getMessages().length > 0);
 
 const alert = ref(false);
 
+const botTyping = ref(false);
+
+function startBotAnswer(timeout = 0) {
+    setTimeout(() => {
+        botTyping.value = true;
+    }, timeout);
+}
+
+function endBotAnswer(timeout = 0) {
+    setTimeout(() => {
+        botTyping.value = false;
+    }, timeout);
+}
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -41,20 +55,22 @@ function getLocation() {
     getLocationInfo();
 }
 
-function sentBotInitMessages(message) {
-    addBotMessage(message, 1000, true);
-    addBotMessage(text.questionText[getRandomInt(3)], 2000, false);
-    addUserOptions(text.userInteractions, null, 2100);
+function sendBotInitMessages(message) {
+    startBotAnswer();
+    endBotAnswer(1800);
+
+    addBotMessage(message, 0, true);
+    addBotMessage(text.questionText[getRandomInt(3)], 1000, false);
+    addUserOptions(text.userInteractions, null, 1100);
+
 }
 
 async function getWeatherInfoByLocal(local) {
     let weather = await apiClient.value.getCurrentWeatherByCityName(local);
-    console.log(weather);
     if (weather.success) {
-        console.log(weather);
         sendWeatherInfo(weather);
     } else {
-        sentBotInitMessages(text.botCityNotFoundError);
+        sendBotInitMessages(text.botCityNotFoundError);
     }
 }
 
@@ -100,7 +116,7 @@ function sendWeatherInfo(weather) {
     let template = text.botSuccessReaction.find(it => it.type == 'weather');
     template = template.reaction;
 
-    sentBotInitMessages(
+    sendBotInitMessages(
         `${template.beforeCity} ${city}: ${template.afterCity} ${temperature}, `
         + `${template.afterTemperature} ${feelsLike}. ${capitalizedDescription}.` 
     );
@@ -115,25 +131,27 @@ watch(locationReceived, async (newValue) => {
             sendWeatherInfo(weather);
         }
     } else {
-        sentBotInitMessages(text.botGeolocationError);
+        sendBotInitMessages(text.botGeolocationError);
     }
 });
 
 export const getBotData = () => {
     const initBot = () => {
-        if (!botInit.value) {        
-            addBotMessage(text.helloText, 0, true);
-            addBotMessage(text.questionText[getRandomInt(3)], 1000, false);
-            addUserOptions(text.userInteractions, null, 1100);
+        if (!botInit.value) {  
+            sendBotInitMessages(text.helloText);
         }
     };
 
     const isBotInit = () => botInit.value;
 
     const choseInteraction = (_text, _type = null) => {
-        addUserMessage(_text, _type, 0);
+        addUserMessage(_text, _type, 800);
+        startBotAnswer(800);
+
         addBotMessage(text.botAnswers.find(it => it.type == _type).text, 1000);
         addUserOptions(text[_type+'Variants'], _type, 1500);
+
+        endBotAnswer(1500);
     }
 
     const choseOption = (_text, _type) => {
@@ -159,6 +177,8 @@ export const getBotData = () => {
         if (_type == 'weather') {
             getWeatherInfoByLocal(_text);
         } else {
+            startBotAnswer();
+
             addBotMessage(
                 text.botSuccessReaction.find(it => 
                     it.type == _type
@@ -166,6 +186,8 @@ export const getBotData = () => {
                 1000
             );
             addUserOptions(text.userInteractions, null, 1100);
+
+            endBotAnswer(1100);
         }
         otherOption.value = false;
     } 
@@ -180,6 +202,8 @@ export const getBotData = () => {
 
     const closeAlert = () => alert.value = false;
 
+    const isBotTyping = () => botTyping.value;
+
     return {
         initBot,
         isBotInit,
@@ -190,6 +214,9 @@ export const getBotData = () => {
         removeOtherOption,
         alertVisibility,
         showAlert,
-        closeAlert
+        closeAlert,
+        startBotAnswer,
+        endBotAnswer,
+        isBotTyping
     }
 }

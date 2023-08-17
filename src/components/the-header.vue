@@ -5,7 +5,8 @@ import { getMessageData } from '@/composable/message-history';
 
 const { 
     isBotInit,
-    showAlert
+    showAlert,
+    isBotTyping
 } = getBotData();
 
 const {
@@ -21,9 +22,15 @@ const {
             class="header__img"
             src="./../assets/img/icon-robot-white.svg"
             alt="Robot icon">
-        <h1 class="header__text font-bold text-center cursor-default">
-            {{  lines.botName }}
-        </h1> 
+        <div class="header__text flex flex-col text-center">
+            <h1 class="header__title font-bold cursor-default">
+                {{  lines.botName }}
+            </h1> 
+            <p v-if="isBotTyping()"
+                class="header__type-text animate-bounce">
+                {{ lines.botTypingText }}
+            </p>
+        </div>
         <h1 
             class="header__close font-bold m-0 p-4 cursor-pointer"
             :class="{'invisible': !isBotInit()}"

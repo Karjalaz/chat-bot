@@ -13,6 +13,7 @@ export const getMessageData = () => {
             timeout: timeout,
             withIcon: icon
         });
+
     }
 
     function addUserMessage(message, type, timeout = 0, icon = true) {

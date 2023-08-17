@@ -98,5 +98,6 @@
     "botGeolocationError": "Sorry, error occured! You need to grant permission to your geolocation.",
     "botCityNotFoundError": "Sorry, error occured! City that you stated is not found in our databases.",
     "alertTitle": "Confirm your action",
-    "youSureToExitText": "Are you sure you want to exit? Chat history will not save."
+    "youSureToExitText": "Are you sure you want to exit? Chat history will not save.",
+    "botTypingText": "typing..."
 }
