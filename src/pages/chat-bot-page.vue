@@ -52,7 +52,7 @@ function sendMessage(e) {
             <div 
                 v-if="isOtherOption()"
                 id="textInput"
-                class="chat-bot__input-area flex flex-row gap-2 mt-auto
+                class="chat-bot__input-area flex flex-row gap-2 mt-auto px-2
                     xl:px-12">
                 <input 
                     id="input"

@@ -68,6 +68,7 @@ function sendBotInitMessages(message) {
 async function getWeatherInfoByLocal(local) {
     let weather = await apiClient.value.getCurrentWeatherByCityName(local);
     if (weather.success) {
+        console.log(weather);
         sendWeatherInfo(weather);
     } else {
         sendBotInitMessages(text.botCityNotFoundError);

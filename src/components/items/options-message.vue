@@ -93,27 +93,4 @@ onMounted(() => {
     transition: background-position .8s ease;
     background-position: left;
 }
-
-.show-enter-active {
-    transition: opacity .8s ease-in-out;
-}
-
-.show-leave-active {
-    transition: opacity .8s ease;
-}
-
-.show-enter-from {
-    opacity: 0;
-}
-.show-leave-to {
-    opacity: 0;
-}
-
-.show-enter-to {
-    opacity: 1;
-} 
-
-.show-leave-from {
-    opacity: 1;
-}
 </style>

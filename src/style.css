@@ -20,9 +20,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
 #app {
-  height: 100vh;
+  height: 100dvh;
 }
 
 .main-gradient {
@@ -60,6 +59,19 @@ h1 {
 p {
   font-size: clamp(0.875rem, 0.736rem + 0.741vw, 1.625rem);
 }
+
+.show-enter-active, show-leave-active {
+  transition: opacity .8s ease-in-out;
+}
+
+.show-enter-from, .show-leave-to {
+  opacity: 0;
+}
+
+.show-enter-to, .show-leave-from {
+  opacity: 1;
+} 
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;

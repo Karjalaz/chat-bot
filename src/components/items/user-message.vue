@@ -41,16 +41,4 @@ onMounted(() => {
     border: solid 2px rgb(252,176,69); 
     border-radius: 6px;
 }
-
-.show-enter-active, .show-leave-active {
-    transition: opacity .8s ease-in-out;
-}
-
-.show-enter-from, .show-leave-to {
-    opacity: 0;
-}
-
-.show-enter-to, .show-leave-from {
-    opacity: 1;
-}
 </style>
