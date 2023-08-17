@@ -83,12 +83,18 @@
         },
         {
             "type": "weather",
-            "reaction": "Okay, here's your weather:"
+            "reaction": {
+                "beforeCity": "Okay, here's your weather in",
+                "afterCity": "Temperature is",
+                "afterTemperature": "feels like"
+            }
         }
     ],
     "botOtherHelpAnswers": [
         "Anything else?",
         "Can you do something for you again?",
         "Do you need my help again?"
-    ]
+    ],
+    "botGeolocationError": "Sorry, error occured! You need to grant permission to your geolocation.",
+    "botCityNotFoundError": "Sorry, error occured! City that you stated is not found in our databases."
 }

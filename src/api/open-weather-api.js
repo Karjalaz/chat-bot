@@ -15,7 +15,7 @@ class OpenWeather extends ApiController {
         );
     }
     
-    getCurrentWeatherByCityName(cityName, countryCode) {
+    getCurrentWeatherByCityName(cityName, countryCode = null) {
         return super.__callGetMethod(
             '/weather',
             {
@@ -28,8 +28,8 @@ class OpenWeather extends ApiController {
     }
 }
 
-const ruClient = new OpenWeather('metric', process.env.VUE_APP_OPEN_WEATHER_API_KEY, 'ru', openWeatherHttpClient);
-const engClient = new OpenWeather('metric', process.env.VUE_APP_OPEN_WEATHER_API_KEY, 'eng', openWeatherHttpClient);
+const ruClient = new OpenWeather('metric', import.meta.env.VITE_OPEN_WEATHER_API_KEY, 'ru', openWeatherHttpClient);
+const engClient = new OpenWeather('metric', import.meta.env.VITE_OPEN_WEATHER_API_KEY, 'eng', openWeatherHttpClient);
 
 export {
     ruClient,
