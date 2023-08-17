@@ -1,9 +1,11 @@
 <script setup>
-import chatBotPage from '@/pages/chat-bot-page.vue';
-import theHeader from './the-header.vue';
+import chatBotPage from './chat-bot-page.vue';
+import theHeader from '@/components/the-header.vue';
 import choseLanguage from './chose-language.vue';
 import { getBotData } from '@/composable/bot-state.js';
 import { getLanguageInfo } from '@/composable/language-state.js';
+import { getMessageData } from '@/composable/message-history.js';
+import theAlert from '@/components/the-alert.vue';
 
 const { 
     isBotInit,
@@ -25,6 +27,7 @@ function openChat() {
 <template>
     <div class="flex h-full w-full self-center flex-col">
         <the-header class="header"/>
+        <the-alert></the-alert>
         <chose-language v-if="!isLangDefined()"/>
         <div v-else-if="isBotInit()" 
             class="page h-full">

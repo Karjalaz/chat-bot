@@ -4,7 +4,8 @@ import { getBotData } from '@/composable/bot-state.js';
 import { getMessageData } from '@/composable/message-history';
 
 const { 
-    isBotInit
+    isBotInit,
+    showAlert
 } = getBotData();
 
 const {
@@ -26,7 +27,7 @@ const {
         <h1 
             class="header__close font-bold m-0 p-4 cursor-pointer"
             :class="{'invisible': !isBotInit()}"
-            @click="clearMessages()">
+            @click="showAlert()">
             x
         </h1>
     </div>

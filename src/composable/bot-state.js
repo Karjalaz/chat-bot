@@ -17,6 +17,8 @@ const {
 
 const botInit = computed(() => getMessages().length > 0);
 
+const alert = ref(false);
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -171,6 +173,12 @@ export const getBotData = () => {
 
     const removeOtherOption = () => otherOption.value = false;
 
+    const alertVisibility = () => alert.value;
+
+    const showAlert = () => alert.value = true;
+
+    const closeAlert = () => alert.value = false;
+
     return {
         initBot,
         isBotInit,
@@ -178,6 +186,9 @@ export const getBotData = () => {
         choseOption,
         isOtherOption,
         botReaction,
-        removeOtherOption
+        removeOtherOption,
+        alertVisibility,
+        showAlert,
+        closeAlert
     }
 }
