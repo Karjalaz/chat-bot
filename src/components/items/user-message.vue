@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, ref, onMounted } from 'vue';
-import { getLanguageInfo } from './../../composable/language-state.js';
+import { getLanguageInfo } from '@/composable/language-state.js';
 
 const props = defineProps({
     message: Object
@@ -23,13 +23,14 @@ onMounted(() => {
 <template>
     <Transition name="show" mode="out-in">
         <div v-if="messageVisible"
-            class="user-message p-4 flex flex-col me-2 ml-auto mt-2">
+            class="user-message p-4 flex flex-col 
+                sm:max-w-[60%] min-w-1/3 w-fit self-end ml-auto">
             <h1 v-if="props.message.withIcon"
-                class="user-message__user-name text-secondary text-end">
+                class="user-message__user-name w-fit text-secondary">
                 {{  getText().userName }}
             </h1>
             <p 
-                class="bot-message__messages text-end">
+                class="user-message__messages w-fit">
                 {{ props.message.text }}
             </p>
         </div>
@@ -42,30 +43,15 @@ onMounted(() => {
     border-radius: 6px;
 }
 
-.user-message {
-    max-width: 60%;
+.show-enter-active, .show-leave-active {
+    transition: opacity .8s ease-in-out;
 }
 
-.show-enter-active {
-    transition: opacity 1s ease-in-out;
-}
-
-.show-leave-active {
-    transition: opacity 1s ease;
-}
-
-.show-enter-from {
-    opacity: 0;
-}
-.show-leave-to {
+.show-enter-from, .show-leave-to {
     opacity: 0;
 }
 
-.show-enter-to {
-    opacity: 1;
-} 
-
-.show-leave-from {
+.show-enter-to, .show-leave-from {
     opacity: 1;
 }
 </style>

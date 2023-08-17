@@ -61,12 +61,17 @@ export const getBotData = () => {
             return;
         }
 
-        botReaction(_type);
+        botReaction(_text, _type);
     }
 
     const botReaction = (_text, _type) => {
         addUserMessage(_text, _type, 1000);
-        addBotMessage(text.botSuccessReaction.find(it => it.type == _type).reaction, 1500);
+        addBotMessage(
+            text.botSuccessReaction.find(it => 
+                it.type == _type
+            ).reaction, 
+            1500
+        );
         addUserOptions(text.userInteractions, null, 1600);
         otherOption.value = false;
     } 

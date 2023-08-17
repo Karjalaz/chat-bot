@@ -1,6 +1,6 @@
 <script setup>
-import { getLanguageInfo } from './../composable/language-state.js';
-import { ref, computed } from 'vue';
+import { getLanguageInfo } from '@/composable/language-state.js';
+import { ref } from 'vue';
 
 const { 
     chosenLanguage,
@@ -16,7 +16,7 @@ const ruHover = ref(false);
 
 <template>
     <div class="chose-language flex flex-col h-full w-full justify-center items-center">
-        <h1 class="chose-language__header font-semibold text-lg">
+        <h1 class="chose-language__header font-semibold">
             {{ text.chooseLanguageTitle }}
         </h1>
         <div class="chose-language__options mt-6">
@@ -25,7 +25,7 @@ const ruHover = ref(false);
                 flex flex-row gap-6">
                 <li>
                     <button 
-                        class="chose-language__eng gradient-animate px-6 py-2"
+                        class="chose-language__eng gradient-animate px-6 py-2 lg:text-xl"
                         :class="{
                             'active': chosenLanguage() == 'eng' && !ruHover, 
                             'inactive': chosenLanguage() != 'eng' || ruHover}"
@@ -37,7 +37,7 @@ const ruHover = ref(false);
                 </li>
                 <li>
                     <button 
-                        class="chose-language__ru gradient-animate px-6 py-2"
+                        class="chose-language__ru gradient-animate px-6 py-2 lg:text-xl"
                         :class="{
                             'active': chosenLanguage() == 'rus' && !engHover, 
                             'inactive': chosenLanguage() != 'rus' || engHover}"
@@ -51,7 +51,7 @@ const ruHover = ref(false);
         </div>
         <button 
             class="chose-language__confirm active mt-6 mb-6 
-            px-6 py-2 hover:animate-squish"
+            px-6 py-2 hover:animate-squish lg:text-xl"
             @click="defineLanguage()">
             {{ text.confirm }}
         </button>

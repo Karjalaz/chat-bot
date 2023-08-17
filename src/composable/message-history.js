@@ -45,6 +45,13 @@ export const getMessageData = () => {
 
     function addMessage(message) {
         messageHistory.items.push(message);
+        setTimeout(() => {
+            let view = document.getElementById("chat");
+            view.scrollTo({
+                top: view.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, message.timeout + 800);
     }
 
     return {

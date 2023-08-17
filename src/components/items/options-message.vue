@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps, ref, onMounted, computed } from 'vue';
-import { getMessageData } from './../../composable/message-history';
-import { getBotData } from './../../composable/bot-state';
+import { getMessageData } from '@/composable/message-history';
+import { getBotData } from '@/composable/bot-state';
 
 const props = defineProps({
     message: Object
@@ -38,7 +38,7 @@ onMounted(() => {
 <template>
     <Transition name="show" mode="out-in">
         <div v-if="messageVisible && lastMessage"
-            class="options-message flex flex-row items-start mt-2">
+            class="options-message flex flex-row items-start">
             <img 
                 class="options-message__avatar p-2"
                 :class="{'invisible': !props.message.withIcon}"
@@ -50,9 +50,12 @@ onMounted(() => {
                     :key="option.type"
                     :id="'option-' + (option.type ?? props.message.type)"
                     class="options-message__option cursor-pointer 
-                        p-2 border-2 rounded-xl"
+                        p-2 border-2 rounded-xl text-center
+                        lg:p-4"
                     @click="userChose(option.text ?? option, option.type ?? props.message.type)">
-                        {{ option.text ?? option}}
+                        <p>
+                            {{ option.text ?? option}}
+                        </p>
                 </li>
             </ul>
         </div>
@@ -92,11 +95,11 @@ onMounted(() => {
 }
 
 .show-enter-active {
-    transition: opacity 1s ease-in-out;
+    transition: opacity .8s ease-in-out;
 }
 
 .show-leave-active {
-    transition: opacity .5s ease;
+    transition: opacity .8s ease;
 }
 
 .show-enter-from {

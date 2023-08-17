@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, ref, onMounted } from 'vue';
-import { getLanguageInfo } from './../../composable/language-state.js';
+import { getLanguageInfo } from '@/composable/language-state.js';
 
 const props = defineProps({
     message: Object
@@ -13,7 +13,6 @@ const {
 const messageVisible = ref(false);
 
 onMounted(() => {
-    console.log(props.message);
     setTimeout(() => {
         messageVisible.value = true;
     }, props.message.timeout);
@@ -23,7 +22,7 @@ onMounted(() => {
 <template>
     <Transition name="show" mode="out-in">
         <div v-if="messageVisible"
-            class="bot-message flex flex-row items-center mt-2">
+            class="bot-message flex flex-row items-center">
             <img 
                 class="bot-message__avatar p-2"
                 :class="{'invisible': !props.message.withIcon}"
@@ -59,30 +58,15 @@ onMounted(() => {
     height: 64px;
 }
 
-.bot-message {
-    max-width: 60%;
+.show-enter-active, show-leave-active {
+    transition: opacity .8s ease-in-out;
 }
 
-.show-enter-active {
-    transition: opacity 1s ease-in-out;
-}
-
-.show-leave-active {
-    transition: opacity 1s ease;
-}
-
-.show-enter-from {
-    opacity: 0;
-}
-.show-leave-to {
+.show-enter-from, .show-leave-to {
     opacity: 0;
 }
 
-.show-enter-to {
+.show-enter-to, .show-leave-from {
     opacity: 1;
 } 
-
-.show-leave-from {
-    opacity: 1;
-}
 </style>
