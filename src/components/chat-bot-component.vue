@@ -7,9 +7,7 @@ import { getLanguageInfo } from './../composable/language-state.js';
 
 const { 
     isBotInit,
-    initBot,
-    setChatVisible,
-    isChatVisible
+    initBot
 } = getBotData();
 
 const {
@@ -21,15 +19,15 @@ const text = getText();
 
 function openChat() {
     initBot();
-    setChatVisible(true);
 }
 </script>
 
 <template>
     <chose-language v-if="!isLangDefined()"/>
-    <div v-else class="container h-full flex flex-col">
+    <div v-else class="container flex h-full flex-col mb-2">
         <the-header class="header"/>
-        <div v-if="isChatVisible()" class="page h-full">
+        <div v-if="isBotInit()" 
+            class="page h-full">
             <chat-bot-page/>
         </div>
         <div v-else class="button-area flex flex-col justify-center h-full">
@@ -50,5 +48,9 @@ function openChat() {
 <style scoped>
 .header {
     z-index: 2;
+}
+
+.page {
+    height: calc(100% - 84px);
 }
 </style>

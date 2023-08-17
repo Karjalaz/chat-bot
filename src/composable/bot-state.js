@@ -13,7 +13,7 @@ const {
     getText
 } = getLanguageInfo();
 
-const botInit = computed(() => messageHistory.items.length > 0);
+const botInit = computed(() => getMessages().length > 0);
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -21,31 +21,67 @@ function getRandomInt(max) {
 
 const text = getText();
 
-const messageHistory = reactive({
-    items: getMessages()
-});
+const otherOption = ref(false);
 
-const chatVisible = ref(false);
+function getWeatherInfo() {
+
+}
 
 export const getBotData = () => {
     const initBot = () => {
         if (!botInit.value) {        
             addBotMessage(text.helloText, 0, true);
             addBotMessage(text.questionText[getRandomInt(3)], 1000, false);
-            addUserOptions(text.userInteractions);
+            addUserOptions(text.userInteractions, null, 1100);
         }
     };
 
     const isBotInit = () => botInit.value;
 
-    const isChatVisible = () => chatVisible.value;
+    const choseInteraction = (_text, _type = null) => {
+        addUserMessage(_text, _type, 1000);
+        addBotMessage(text.botAnswers.find(it => it.type == _type).text, 1500);
+        addUserOptions(text[_type+'Variants'], _type, 2000);
+    }
 
-    const setChatVisible = (value) => chatVisible.value = value;
+    const choseOption = (_text, _type) => {
+        console.log(_text);
+        console.log(_type);
+        
+        if (_text == text.otherTextVariant) {
+            otherOption.value = true;
+            return;
+        }
+
+        otherOption.value = false;
+
+        if (_type == 'weather') {
+            //todo
+            getWeatherInfo();
+            return;
+        }
+
+        botReaction(_type);
+    }
+
+    const botReaction = (_text, _type) => {
+        addUserMessage(_text, _type, 1000);
+        addBotMessage(text.botSuccessReaction.find(it => it.type == _type).reaction, 1500);
+        addUserOptions(text.userInteractions, null, 1600);
+        otherOption.value = false;
+    } 
+
+    const isOtherOption = () => otherOption.value;
+
+    const removeOtherOption = () => otherOption.value = false;
 
     return {
         initBot,
         isBotInit,
-        setChatVisible,
-        isChatVisible
+        choseInteraction,
+        choseOption,
+        isOtherOption,
+        botReaction,
+        removeOtherOption
     }
 }

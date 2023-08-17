@@ -1,11 +1,15 @@
 <script setup>
 import lines from './../assets/json/eng-lines.json';
 import { getBotData } from './../composable/bot-state.js';
+import { getMessageData } from '../composable/message-history';
 
 const { 
-    isBotInit,
-    setChatVisible,
+    isBotInit
 } = getBotData();
+
+const {
+    clearMessages
+} = getMessageData();
 </script>
 
 <template>
@@ -21,7 +25,7 @@ const {
         <p 
             class="header__close font-bold text-xl m-0 p-4 cursor-pointer"
             :class="{'invisible': !isBotInit()}"
-            @click="setChatVisible(false)">
+            @click="clearMessages()">
             x
         </p>
     </div>
@@ -31,5 +35,9 @@ const {
 .header__img {
     width: 48px;
     height: 48px;
+}
+
+.header {
+    z-index: 2;
 }
 </style>

@@ -5,6 +5,7 @@
     "confirm": "Continue...",
     "inputPlaceholder": "Type here...",
     "chooseLanguageTitle": "Choose your language:",
+    "userName": "You",
     "ruLang": "Russian",
     "engLang": "English",
     "helloText": "Hello! I'm a smart bot and here to help you!",
@@ -14,9 +15,18 @@
         "How can I help?"
     ],
     "userInteractions": [
-        "Show weather",
-        "Order pizza",
-        "Set alarm"
+        {
+            "type": "weather",
+            "text": "Show weather"
+        },
+        {
+            "type": "pizza",
+            "text": "Order pizza"
+        },
+        {
+            "type": "alarm",
+            "text": "Set alarm"
+        }
     ],
     "botAnswers": [
         {
@@ -28,10 +38,11 @@
             "text": "Which pizza do you want?"
         },
         {
-            "type": "alarn",
+            "type": "alarm",
             "text": "For which time do you want to set an alarm?"
         }
     ],
+    "otherTextVariant": "Other",
     "pizzaVariants": [
         "Margherita",
         "Pepperoni",
@@ -39,7 +50,7 @@
     ],
     "weatherVariants": [
         "My location",
-        "Other city"
+        "Other"
     ],
     "alarmVariants": [
         "07:00",

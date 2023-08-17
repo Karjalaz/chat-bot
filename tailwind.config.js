@@ -13,7 +13,9 @@ export default {
         squish: 'squish 2s ease-in-out infinite'
       },
       colors: {
-        primary: 'rgb(131,58,180)'
+        primary: 'rgb(131,58,180)',
+        red: 'rgb(253,29,29)',
+        secondary: 'rgb(252,176,69)'
       }
     },
   },

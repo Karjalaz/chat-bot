@@ -15,21 +15,25 @@ export const getMessageData = () => {
         });
     }
 
-    function addUserMessage(message, timeout = 0, icon = true) {
+    function addUserMessage(message, type, timeout = 0, icon = true) {
         addMessage({
             id: messageHistory.items.length,
             from: 'user',
             text: message,
+            type: type,
             timeout: timeout,
             withIcon: icon
         });
     }
 
-    function addUserOptions(options) {
+
+    function addUserOptions(options, type, timeout = 0) {
         addMessage({
             id: messageHistory.items.length,
             from: 'options',
-            options: options
+            options: options,
+            timeout: timeout,
+            type: type
         });
     }
 
