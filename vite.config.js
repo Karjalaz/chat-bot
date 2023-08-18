@@ -4,7 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/chat-bot/',
+  publicPath: '/chat-bot/',
   plugins: [vue()],
   resolve: {
     alias: {
