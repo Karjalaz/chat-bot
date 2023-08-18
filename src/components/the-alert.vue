@@ -15,10 +15,6 @@ function close() {
     closeAlert();
     clearMessages();
 }
-
-onMounted(() => {
-    console.log(getText().botName);
-})
 </script>
 
 <template>
