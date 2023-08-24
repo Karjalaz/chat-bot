@@ -1,6 +1,6 @@
 # Chatbot example
 
-This project is a simple chatbot, that allows user to interact with it and get some information like weather information.
+This project is a simple chatbot, that allows user to interact with it and get weather information by geolocation or by regular input.
 
 ## Developer information
 
